@@ -14,8 +14,7 @@ public class BusServiceTest  {
 
     BusService busService = null;
     Bus bus;
-    String fileName = "target/sample.csv";
-
+    String fileName = "sample.csv";
 
     @Before
     public void setUp() {
@@ -28,21 +27,22 @@ public class BusServiceTest  {
     public void tearDown() {
     busService = null; bus = null;
     }
-    @Test(expected = NumberFormatException.class)
-    public void givenWrongDataFormatThrowsNumberFormatException() {
-        busService.readFile(fileName);
-    }
 
     @Test
-    public void readFileGiven() throws ParseException {
+    public void givenBusDetailsReadFileGiven() throws ParseException {
         List<Bus> output = busService.readFile(fileName);
         assertEquals("bus record objects not returned correctly",49,output.size());
     }
-
     @Test
-    public void sortFileByDistance() {
+    public void givenBusDetailsSortFileByDistance() {
         List<Bus> output = busService.readFile(fileName);
-        assertEquals("bus record objects not returned correctly",49,output.size());
-    }}
+        assertEquals(49.3,busService.getDistanceTravelledByBusSorted(output).get(0).getTravelledKM(),0);
+    }
+    @Test
+    public void givenBusDetailsTotalAmount() {
+        List<Bus> output = busService.readFile(fileName);
+        Bus bus = busService.getTotalCollectionOfTickets(output);
+        assertEquals(562, bus.getTotalTicketAmount(),0);
 
-    p
+    }
+}

@@ -52,36 +52,25 @@ public class BusService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(records.size());
         return records;
     }
 
     public List<Bus> getDistanceTravelledByBusSorted(List<Bus> records) {
 
-        List<Bus> distanceTravelledByBusSorted = new ArrayList<Bus>();
-
         Comparator<Bus> comparator = (s1, s2) -> (int) (s1.getTravelledKM() - s2.getTravelledKM());
         //sort by travelled_KM
-        Collections.sort(records, comparator);
-
-        for (Bus bus : records) {
-            distanceTravelledByBusSorted.add(bus);
-        }
-        return distanceTravelledByBusSorted;
+        Bus sorted = Collections.max(records, comparator);
+        return Collections.singletonList(sorted);
     }
 
-    public int getTotalCollectionOfTickets(List<Bus> records) {
+    public Bus getTotalCollectionOfTickets(List<Bus> records) {
         //get total_ticket_amount
         List<Integer> totalCollectionOfTickets = new ArrayList<>();
-        Comparator<Bus> comparator = (s1, s2) -> s1.getTotalTicketAmount() + s2.getTotalTicketAmount();
 
-        //sum total_ticket_amount
-        for (Bus bus : records) {
-            System.out.println(totalCollectionOfTickets.add(bus.getTotalTicketAmount()));
-        }
-        //sort by total_ticket_amount
-        Collections.sort(records, comparator);
-        return 0;
+        Comparator<Bus> comparator = (s1, s2) -> (int) (s1.getTotalTicketAmount() - s2.getTotalTicketAmount());
+
+        Bus total = Collections.max(records, comparator);
+        return total;
     }
 
 
