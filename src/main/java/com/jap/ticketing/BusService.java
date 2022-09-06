@@ -60,6 +60,9 @@ public class BusService {
         Comparator<Bus> comparator = (s1, s2) -> (int) (s1.getTravelledKM() - s2.getTravelledKM());
         //sort by travelled_KM
         Collections.sort(records , comparator.reversed());
+        for(Bus element : records) {
+            System.out.println(element);
+        }
         return records;
     }
 
