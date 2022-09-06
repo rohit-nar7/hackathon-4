@@ -31,7 +31,7 @@ public class BusServiceTest  {
     @Test
     public void givenBusDetailsReadFileGiven() throws ParseException {
         List<Bus> output = busService.readFile(fileName);
-        assertEquals("bus record objects not returned correctly",49,output.size());
+        assertEquals(49,output.size());
     }
     @Test
     public void givenBusDetailsSortFileByDistance() {
