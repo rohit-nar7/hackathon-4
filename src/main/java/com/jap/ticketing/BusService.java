@@ -56,23 +56,22 @@ public class BusService {
     }
 
     public List<Bus> getDistanceTravelledByBusSorted(List<Bus> records) {
-
+        System.out.println("\n--------------------------------------------------------------------------------\n");
         Comparator<Bus> comparator = (s1, s2) -> (int) (s1.getTravelledKM() - s2.getTravelledKM());
         //sort by travelled_KM
-        Bus sorted = Collections.max(records, comparator);
-        return Collections.singletonList(sorted);
+        Collections.sort(records , comparator.reversed());
+        return records;
     }
 
-    public Bus getTotalCollectionOfTickets(List<Bus> records) {
+    public int getTotalCollectionOfTickets(List<Bus> records) {
         //get total_ticket_amount
-        List<Integer> totalCollectionOfTickets = new ArrayList<>();
 
-        Comparator<Bus> comparator = (s1, s2) -> (int) (s1.getTotalTicketAmount() - s2.getTotalTicketAmount());
-
-        Bus total = Collections.max(records, comparator);
+        int total = 0;
+        for (int i = 0; i < records.size() ; i++) {
+            total = total + records.get(i).getTotalTicketAmount();
+        }
         return total;
     }
-
 
     public static void main(String[] args) {
         BusService busService = new BusService();

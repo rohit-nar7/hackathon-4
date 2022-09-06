@@ -36,13 +36,12 @@ public class BusServiceTest  {
     @Test
     public void givenBusDetailsSortFileByDistance() {
         List<Bus> output = busService.readFile(fileName);
-        assertEquals(49.3,busService.getDistanceTravelledByBusSorted(output).get(0).getTravelledKM(),0);
+        assertEquals(49.5,busService.getDistanceTravelledByBusSorted(output).get(10).getTravelledKM(),0);
     }
     @Test
     public void givenBusDetailsTotalAmount() {
         List<Bus> output = busService.readFile(fileName);
-        Bus bus = busService.getTotalCollectionOfTickets(output);
-        assertEquals(562, bus.getTotalTicketAmount(),0);
+        assertEquals(10348,busService.getTotalCollectionOfTickets(output) ,0);
 
     }
 }
